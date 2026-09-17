@@ -1,0 +1,27 @@
+.DS_Store
+.gitignore
+node_modules
+public
+prof
+tsconfig.tsbuildinfo
+.obsidian
+.quartz-cache
+private/
+.replit
+replit.nix
+.quartz/
+quartz/cli/tui/dist/
+.turbo/
+
+# --- Vault-leak guards (added for conboy.dev) ---
+# Nothing from an Obsidian vault should ever be committed except what is
+# deliberately copied into content/. These are belt-and-braces.
+.obsidian/
+.trash/
+private/
+**/private/
+*.confidential.md
+*.private.md
+# Never commit a vault that was symlinked or copied in wholesale
+content/.obsidian/
+content/**/.obsidian/

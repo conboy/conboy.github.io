@@ -1,0 +1,44 @@
+#!/bin/sh
+# Block commits that look like they contain proprietary / internal material.
+# Bypass deliberately with:  git commit --no-verify
+# Only content/ is ever published, so only content/ is scanned. Repo docs such as
+# WRITING.md legitimately name the markers and vault paths they warn about.
+staged=$(git diff --cached --name-only --diff-filter=ACM | grep -E '^content/.*\.(md|markdown)$')
+[ -z "$staged" ] && exit 0
+
+fail=0
+
+# 1. Obsidian vault internals should never be committed.
+for f in $staged; do
+  case "$f" in
+    *.obsidian/*|*/.trash/*|*private/*)
+      echo "BLOCKED: $f looks like vault-internal content."; fail=1 ;;
+  esac
+done
+
+# 2. Content markers suggesting internal material. Case-sensitive where the term
+#    is an acronym or codename, so ordinary prose does not trip it -- "NDA" must
+#    not match "sta-NDA-lone", and "QUARK" must not match "quark".
+CASE_SENS='\bNDA\b|\bKWIQ\b|\bQUARK\b|GFX13V7DEV|GFXIPARCH|SWDEV-[0-9]'
+CASE_INSENS='AMD Confidential|Advanced Micro Devices|Internal Use Only|Proprietary and Confidential|atlp4s13|//depot/|\bGrimlock\b|\bamd\.com\b'
+for f in $staged; do
+  [ -f "$f" ] || continue
+  hit=$( { grep -nE  "$CASE_SENS"   "$f"; grep -nEi "$CASE_INSENS" "$f"; } | head -3 )
+  # Note: test -n, not command success. grep's exit code inside $() is lost.
+  if [ -n "$hit" ]; then
+    echo "BLOCKED: $f contains possible proprietary markers:"
+    echo "$hit" | sed 's/^/    /'
+    fail=1
+  fi
+done
+
+if [ "$fail" = "1" ]; then
+  cat <<'MSG'
+
+Commit aborted by .githooks/pre-commit.
+Review the files above. If this is a false positive, re-run with:
+    git commit --no-verify
+MSG
+  exit 1
+fi
+exit 0

@@ -1,0 +1,64 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  guard:
+    # Server-side mirror of .githooks/pre-commit. The local hook can be skipped
+    # with --no-verify or lost on a fresh clone; this one cannot.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan published content for proprietary markers
+        run: |
+          if [ ! -d content ]; then echo "no content/ dir"; exit 0; fi
+          PATTERN='AMD Confidential|Advanced Micro Devices|Internal Use Only|Proprietary and Confidential|atlp4s13|//depot/|GFX13V7DEV|GFXIPARCH|Grimlock|KWIQ|SWDEV-[0-9]'
+          if grep -rnEi "$PATTERN" content --include='*.md'; then
+            echo "::error::Proprietary markers found in content/. Refusing to publish."
+            exit 1
+          fi
+          if find content -name '.obsidian' -o -name '.trash' | grep -q .; then
+            echo "::error::Obsidian vault internals found in content/."
+            exit 1
+          fi
+          echo "Content scan clean."
+
+  build:
+    needs: guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # Quartz uses git history for created/modified dates
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npx quartz build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
