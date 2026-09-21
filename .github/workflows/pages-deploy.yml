@@ -42,7 +42,9 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3 # reads from a '.ruby-version' or '.tools-version' file if 'ruby-version' is omitted
+          # Pinned to 3.1: Gemfile.lock holds nokogiri 1.13.10, which requires
+          # Ruby < 3.2. A floating "3" resolves to 3.4 and fails to resolve.
+          ruby-version: '3.1'
           bundler-cache: true
 
       - name: Build site
