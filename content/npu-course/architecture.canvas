@@ -1,0 +1,288 @@
+{
+  "nodes": [
+    {
+      "id": "a1f3c9d2e7b48065",
+      "type": "group",
+      "x": -700,
+      "y": -420,
+      "width": 620,
+      "height": 640,
+      "label": "PS — Cortex-A9 @ 666 MHz (single core)",
+      "color": "6"
+    },
+    {
+      "id": "b2e4d0a3f8c59176",
+      "type": "group",
+      "x": 60,
+      "y": -420,
+      "width": 940,
+      "height": 900,
+      "label": "PL — Your NPU (~7,500 LUTs / 44 DSPs / 31 BRAM)",
+      "color": "4"
+    },
+    {
+      "id": "c3f5e1b4a9d60287",
+      "type": "text",
+      "x": -660,
+      "y": -360,
+      "width": 540,
+      "height": 130,
+      "color": "6",
+      "text": "## llama2.c — golden model\n\nTokenizer, sampling, and the **C reference every RTL block is validated against**.\n\nSee [Phase 1](/npu-course/phase-1-baseline-llm)"
+    },
+    {
+      "id": "d4a6f2c5b0e71398",
+      "type": "text",
+      "x": -660,
+      "y": -200,
+      "width": 540,
+      "height": 130,
+      "color": "6",
+      "text": "## Descriptor builder\n\nBuilds a chain of `{opcode, src, dst, M, N, K, M0, shift}` for a whole layer, then rings the **doorbell**.\n\nSee [Phase 6](/npu-course/phase-6-sequencer)"
+    },
+    {
+      "id": "e5b7a3d6c1f82409",
+      "type": "text",
+      "x": -660,
+      "y": -40,
+      "width": 540,
+      "height": 150,
+      "color": "1",
+      "text": "## ⚠️ Cache coherency\n\nA9 writes weights → they sit in L1/L2. PL reads **stale DDR**.\n\n`Xil_DCacheFlushRange()` before kick\n`Xil_DCacheInvalidateRange()` after\n\n==Looks exactly like an RTL bug. Is not one.=="
+    },
+    {
+      "id": "f6c8b4e7d2a9350a",
+      "type": "text",
+      "x": -660,
+      "y": 140,
+      "width": 540,
+      "height": 60,
+      "color": "6",
+      "text": "### UART @ 115200 → your generated stories"
+    },
+    {
+      "id": "07d9c5f8e3b0461b",
+      "type": "text",
+      "x": 100,
+      "y": -360,
+      "width": 400,
+      "height": 140,
+      "color": "4",
+      "text": "## Command sequencer\n\nFetches descriptors, runs a full layer with **zero PS involvement**. Interrupts on done.\n\n*A baby PM4 ring.* ~1,000 LUTs"
+    },
+    {
+      "id": "18e0d6a9f4c1572c",
+      "type": "text",
+      "x": 560,
+      "y": -360,
+      "width": 400,
+      "height": 140,
+      "color": "4",
+      "text": "## AXI-Lite slave\n\n16 control/status registers. Doorbell, kick, busy-cycle counters.\n\n~300 LUTs\n\nSee [Phase 0](/npu-course/phase-0-toolchain)"
+    },
+    {
+      "id": "29f1e7b0a5d2683d",
+      "type": "text",
+      "x": 100,
+      "y": -170,
+      "width": 400,
+      "height": 170,
+      "color": "2",
+      "text": "## 8×4 systolic array\n\n**32 PEs = 32 DSPs**\nint8 × int8 → int32, weight-stationary, output-stationary accumulation.\n\n==6.4 GOPS @ 100 MHz== ≈ 5× the A9\n\nSee [Phase 3](/npu-course/phase-3-mac-engine)"
+    },
+    {
+      "id": "3a02f8c1b6e3794e",
+      "type": "text",
+      "x": 560,
+      "y": -170,
+      "width": 400,
+      "height": 170,
+      "color": "2",
+      "text": "## Vector unit\n\nRMSNorm · Softmax · SiLU · RoPE\n**~12 DSPs + 4 BRAM** of LUTs\n\n*Amdahl's ambush lives here* — 10% becomes 35% once matmul is fast.\n\nSee [Phase 5](/npu-course/phase-5-vector-unit)"
+    },
+    {
+      "id": "4b13a9d2c7f4805f",
+      "type": "text",
+      "x": 100,
+      "y": 50,
+      "width": 400,
+      "height": 150,
+      "color": "5",
+      "text": "## Requantize\n\n`int32 → ×M0 → >>n → saturate int8`\n\n> ⚠️ Round **half-away-from-zero**, and check negatives. Arithmetic `>>` rounds toward −∞.\n\nSee [Phase 2](/npu-course/phase-2-numerics)"
+    },
+    {
+      "id": "5c24b0e3d8a5916a",
+      "type": "text",
+      "x": 560,
+      "y": 50,
+      "width": 400,
+      "height": 150,
+      "color": "5",
+      "text": "## Double-buffered tile RAM\n\nPing-pong weight + activation buffers. Load tile N+1 while computing tile N.\n\n**Target >80% PE utilization**\n\n12 BRAM · ~800 LUTs"
+    },
+    {
+      "id": "6d35c1f4e9b6a27b",
+      "type": "text",
+      "x": 100,
+      "y": 250,
+      "width": 400,
+      "height": 150,
+      "color": "5",
+      "text": "## KV cache\n\n**128-token context** = 41 KB = 9 BRAM\n\n256 tokens leaves only 3 blocks free → too tight. This is *why* 128.\n\nSee [Phase 7 §7.1](/npu-course/phase-7-end-to-end)"
+    },
+    {
+      "id": "7e46d2a5f0c7b38c",
+      "type": "text",
+      "x": 560,
+      "y": 250,
+      "width": 400,
+      "height": 150,
+      "color": "1",
+      "text": "## Custom AXI4 burst master\n\n**~700 LUTs** — you write this yourself.\nXilinx AXI DMA IP is 2–3K LUTs = 20% of your whole fabric.\n\n> ⚠️ Bursts cannot cross 4 KB boundaries.\n\nSee [Phase 4](/npu-course/phase-4-memory)"
+    },
+    {
+      "id": "8f57e3b6a1d8c49d",
+      "type": "text",
+      "x": 1080,
+      "y": -20,
+      "width": 420,
+      "height": 230,
+      "color": "1",
+      "text": "# DDR3 — the real bottleneck\n\n512 MB, 16-bit @ 533 MHz\nPeak ~2.1 GB/s · **realistic ~1.2 GB/s**\n\n---\n\n$$\\text{tok/s} \\approx \\frac{1.2\\ \\text{GB/s}}{\\text{model size}}$$\n\n**260K @ 4-bit** → fits in BRAM, DDR **idle** ✅\n**15M @ int8** → ~80 tok/s, bandwidth-bound\n\n*No amount of added DSPs would help.*"
+    },
+    {
+      "id": "9068f4c7b2e9d5ae",
+      "type": "text",
+      "x": 1080,
+      "y": -360,
+      "width": 420,
+      "height": 150,
+      "color": "4",
+      "text": "# Read [Board Specs](/npu-course/board-specs) first\n\n**XC7Z007S** — 14,400 LUTs · 60 DSPs · 225 KB BRAM\n\n==Roughly ¼ of a Pynq-Z2.== Almost every FPGA-ML tutorial online assumes the bigger part. Check every resource claim."
+    }
+  ],
+  "edges": [
+    {
+      "id": "e01a2b3c4d5e6f70",
+      "fromNode": "d4a6f2c5b0e71398",
+      "fromSide": "right",
+      "toNode": "07d9c5f8e3b0461b",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "doorbell",
+      "color": "6"
+    },
+    {
+      "id": "e12b3c4d5e6f7081",
+      "fromNode": "07d9c5f8e3b0461b",
+      "fromSide": "bottom",
+      "toNode": "29f1e7b0a5d2683d",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "matmul op"
+    },
+    {
+      "id": "e23c4d5e6f708192",
+      "fromNode": "07d9c5f8e3b0461b",
+      "fromSide": "right",
+      "toNode": "3a02f8c1b6e3794e",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "vector op"
+    },
+    {
+      "id": "e34d5e6f708192a3",
+      "fromNode": "29f1e7b0a5d2683d",
+      "fromSide": "bottom",
+      "toNode": "4b13a9d2c7f4805f",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "int32 acc"
+    },
+    {
+      "id": "e45e6f708192a3b4",
+      "fromNode": "4b13a9d2c7f4805f",
+      "fromSide": "right",
+      "toNode": "3a02f8c1b6e3794e",
+      "toSide": "bottom",
+      "toEnd": "arrow",
+      "label": "int8"
+    },
+    {
+      "id": "e56f708192a3b4c5",
+      "fromNode": "5c24b0e3d8a5916a",
+      "fromSide": "left",
+      "toNode": "29f1e7b0a5d2683d",
+      "toSide": "right",
+      "toEnd": "arrow",
+      "label": "weights + acts"
+    },
+    {
+      "id": "e6708192a3b4c5d6",
+      "fromNode": "7e46d2a5f0c7b38c",
+      "fromSide": "top",
+      "toNode": "5c24b0e3d8a5916a",
+      "toSide": "bottom",
+      "toEnd": "arrow",
+      "label": "burst fill"
+    },
+    {
+      "id": "e78192a3b4c5d6e7",
+      "fromNode": "8f57e3b6a1d8c49d",
+      "fromSide": "left",
+      "toNode": "7e46d2a5f0c7b38c",
+      "toSide": "right",
+      "toEnd": "arrow",
+      "fromEnd": "arrow",
+      "label": "AXI-HP 64-bit",
+      "color": "1"
+    },
+    {
+      "id": "e8192a3b4c5d6e7f",
+      "fromNode": "6d35c1f4e9b6a27b",
+      "fromSide": "right",
+      "toNode": "29f1e7b0a5d2683d",
+      "toSide": "bottom",
+      "toEnd": "arrow",
+      "label": "K, V"
+    },
+    {
+      "id": "e92a3b4c5d6e7f80",
+      "fromNode": "18e0d6a9f4c1572c",
+      "fromSide": "left",
+      "toNode": "07d9c5f8e3b0461b",
+      "toSide": "right",
+      "toEnd": "arrow",
+      "fromEnd": "arrow",
+      "label": "ctrl / status"
+    },
+    {
+      "id": "ea3b4c5d6e7f8091",
+      "fromNode": "c3f5e1b4a9d60287",
+      "fromSide": "bottom",
+      "toNode": "d4a6f2c5b0e71398",
+      "toSide": "top",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "eb4c5d6e7f809122",
+      "fromNode": "3a02f8c1b6e3794e",
+      "fromSide": "left",
+      "toNode": "f6c8b4e7d2a9350a",
+      "toSide": "right",
+      "toEnd": "arrow",
+      "label": "logits → token",
+      "color": "6"
+    },
+    {
+      "id": "ec5d6e7f80912233",
+      "fromNode": "e5b7a3d6c1f82409",
+      "fromSide": "right",
+      "toNode": "7e46d2a5f0c7b38c",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "flush before kick",
+      "color": "1"
+    }
+  ]
+}

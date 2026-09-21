@@ -17,6 +17,12 @@ served at `/npu-notes`. This page is `content/index.md`.
 > Run `npx quartz build --serve` and open `localhost:8080`. The site rebuilds as you
 > save, so you can keep Obsidian and the browser side by side.
 
+## Notes
+
+- [[npu-course/index|Zero to NPU: Running a Tiny LLM on a $149 FPGA]] — a full course on
+  designing an int8 neural processing unit for a Zynq-7007S, from a rusty Verilog refresher
+  to a transformer generating text on-chip. Eight phases, ~34 weeks.
+
 ## Projects
 
 - [NPU systolic array animation](https://conboy.github.io/npu-anim/) — interactive,
