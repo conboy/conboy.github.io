@@ -25,7 +25,7 @@ jobs:
         run: |
           if [ ! -d content ]; then echo "no content/ dir"; exit 0; fi
           PATTERN='AMD Confidential|Advanced Micro Devices|Internal Use Only|Proprietary and Confidential|atlp4s13|//depot/|GFX13V7DEV|GFXIPARCH|Grimlock|KWIQ|SWDEV-[0-9]'
-          if grep -rnEi "$PATTERN" content --include='*.md'; then
+          if grep -rnEi "$PATTERN" content --include='*.md' --include='*.canvas'; then
             echo "::error::Proprietary markers found in content/. Refusing to publish."
             exit 1
           fi

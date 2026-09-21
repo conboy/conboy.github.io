@@ -3,7 +3,9 @@
 # Bypass deliberately with:  git commit --no-verify
 # Only content/ is ever published, so only content/ is scanned. Repo docs such as
 # WRITING.md legitimately name the markers and vault paths they warn about.
-staged=$(git diff --cached --name-only --diff-filter=ACM | grep -E '^content/.*\.(md|markdown)$')
+# .canvas files are JSON but their node text is published verbatim, so they are
+# scanned too -- a marker inside a canvas node would otherwise reach the site.
+staged=$(git diff --cached --name-only --diff-filter=ACM | grep -E '^content/.*\.(md|markdown|canvas)$')
 [ -z "$staged" ] && exit 0
 
 fail=0
