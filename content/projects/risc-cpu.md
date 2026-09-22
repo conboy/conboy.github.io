@@ -5,7 +5,7 @@ description: "Processor coursework spanning a Verilog datapath, arithmetic, memo
 
 <p class="eyebrow">PROCESSOR DESIGN / RTL + SIMULATION ARTIFACTS</p>
 
-A coursework project exploring how a processor executes instructions through a shared datapath. The public repository contains Verilog modules, operation-specific testbenches, waveform setup files, and course specifications.
+A coursework processor built around a shared datapath. The repository has the Verilog modules, per-operation testbenches, waveform setup files, and the course specs.
 
 [Explore the repository](https://github.com/conboy/risc-cpu)
 

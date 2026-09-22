@@ -5,7 +5,7 @@ description: "A matrix-engine visualization checked against a cycle-accurate reg
 
 <p class="eyebrow">ACCELERATOR ARCHITECTURE / INTERACTIVE DEMO</p>
 
-A weight-stationary systolic array is easier to understand when you can follow one activation and its partial sum through the hardware. This project makes that movement visible, cycle by cycle.
+A weight-stationary systolic array is hard to follow from a static diagram. This animation shows one activation and its partial sum moving through the array, one cycle at a time.
 
 <p><a class="button primary" href="/npu-anim/" data-router-ignore data-no-popover>Run the animation ↗</a> <a class="button" href="https://github.com/conboy/npu-anim">Source code ↗</a></p>
 

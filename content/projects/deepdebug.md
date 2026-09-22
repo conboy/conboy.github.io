@@ -5,11 +5,11 @@ description: "An AMD internship team project exploring AI-assisted debugging for
 
 <p class="eyebrow">SILICON DEBUGGING / TEAM PROJECT</p>
 
-DeepDebug explores how language models can help engineers investigate failures during silicon validation. I developed the project with **Vivek Chokkalingam** during our AMD internship.
+DeepDebug uses language models to help engineers investigate failures during silicon validation. I built it with **Vivek Chokkalingam** during our AMD internship.
 
 ## The engineering problem
 
-When a system under test fails, the next useful question is often difficult to identify. DeepDebug's publicly described goal is to analyze system state and provide debugging guidance, bringing AI assistance into an engineering investigation.
+When a system under test fails, the hard part is knowing what to check next. DeepDebug analyses the system state and suggests where to look.
 
 ## My role and the public result
 

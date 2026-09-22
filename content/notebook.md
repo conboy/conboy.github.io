@@ -3,7 +3,7 @@ title: Technical notebook
 description: "Notes, experiments, and learning roadmaps in processor and accelerator design."
 ---
 
-This is where I work through ideas in public. Notes can describe a proposed design or an experiment still in progress; completed artifacts and results are linked explicitly.
+Working notes. Some describe a design I have not built yet, others an experiment in progress. Where something is finished, the artifact or result is linked.
 
 ## Accelerator architecture
 
