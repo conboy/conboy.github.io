@@ -18,7 +18,7 @@ jobs:
   guard:
     # Server-side mirror of .githooks/pre-commit. The local hook can be skipped
     # with --no-verify or lost on a fresh clone; this one cannot.
-    runs-on: namespace-profile-default
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Scan published content for proprietary markers
@@ -37,7 +37,7 @@ jobs:
 
   build:
     needs: guard
-    runs-on: namespace-profile-default
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
