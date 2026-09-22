@@ -49,3 +49,5 @@ Part of [[index|Zero to NPU]].
 > One published 16×16 int8 array on a **7020** mapped only 64 of 256 multipliers to DSPs — the other 192 became fabric multipliers, consuming most of a 59% LUT occupancy.
 >
 > The 7020 has 220 DSPs. You have **60**. This is the clearest available evidence that 16×16 is not reachable on your part, and why [[phase-3-mac-engine|8×4]] is the right call.
+
+<script src="/tutor.js" defer></script>

@@ -502,3 +502,5 @@ double measure_ddr_bandwidth(u32 bytes_transferred, u32 clk_hz) {
 ## What's next
 
 You've now got tiles moving from DDR to BRAM to the array and back, overlapped, measured, and bounded by a roofline you understand instead of a number you memorized. [[phase-5-vector-unit]] adds a vector unit alongside the MAC array for the non-matmul operations (activations, normalization, elementwise ops) every real model needs between matmuls.
+
+<script src="/tutor.js" defer></script>

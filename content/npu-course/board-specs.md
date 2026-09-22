@@ -74,3 +74,5 @@ The remaining **19 BRAM blocks** hold model weights for the Tier-1 capstone. 4-b
 64 PEs needs 64 DSPs and you have 60 — and the vector unit needs a dozen.
 
 **32 MACs @ 100 MHz = 6.4 GOPS**, roughly 5× what the A9 will do on int8. That's a real win and it fits.
+
+<script src="/tutor.js" defer></script>

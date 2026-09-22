@@ -352,3 +352,5 @@ int main(int argc, char** argv) {
 ## What's next
 
 With a bit-exact requantization pipeline proven in both languages, you have the one piece of arithmetic every MAC unit in your accelerator depends on. [[phase-3-mac-engine]] builds the array of multiply-accumulate units that feeds this pipeline and turns it into an actual systolic compute engine.
+
+<script src="/tutor.js" defer></script>

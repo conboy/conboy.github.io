@@ -413,3 +413,5 @@ endmodule
 ## What's next
 
 You now have a working vector unit that handles every non-matmul operation a transformer layer needs, wired to share one ALU and one LUT BRAM across four modes. [[phase-6-sequencer]] is where you build the control logic that actually sequences matmul and vector-unit operations correctly, layer after layer, so the whole pipeline runs itself instead of needing you to single-step it.
+
+<script src="/tutor.js" defer></script>

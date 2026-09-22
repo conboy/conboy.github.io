@@ -275,3 +275,5 @@ Instrument the same way you did for the roofline exercise: a hardware cycle coun
 ## What's next
 
 You now have a complete, working NPU that generates real text — both the "everything fits" story and the "here's exactly why the bigger model doesn't" story, both measured on real silicon. [[phase-8-optimization]] takes this working system and makes it *good*: closing timing to push your clock higher, tightening the 4-bit path, measuring power so you can make the actual case for dedicated inference hardware, and writing all of it up as something you could put in a portfolio.
+
+<script src="/tutor.js" defer></script>
