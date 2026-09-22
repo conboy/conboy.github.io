@@ -83,6 +83,14 @@ async function _navigate(url: URL, isBack: boolean = false) {
 
   if (!contents) return
 
+  const html = p.parseFromString(contents, "text/html")
+  // Standalone apps on this domain own their document and script lifecycle.
+  // Load them normally rather than morphing them into the Quartz SPA shell.
+  if (!html.body.hasAttribute("data-slug")) {
+    window.location.assign(url)
+    return
+  }
+
   // notify about to nav
   const event: CustomEventMap["prenav"] = new CustomEvent("prenav", { detail: {} })
   document.dispatchEvent(event)
@@ -91,7 +99,6 @@ async function _navigate(url: URL, isBack: boolean = false) {
   cleanupFns.forEach((fn) => fn())
   cleanupFns.clear()
 
-  const html = p.parseFromString(contents, "text/html")
   normalizeRelativeURLs(html, url)
 
   let title = html.querySelector("title")?.textContent

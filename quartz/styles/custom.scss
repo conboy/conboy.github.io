@@ -1,3 +1,383 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+// Portfolio styling is scoped so the technical notebook keeps its reading layout.
+:root {
+  --portfolio-border: color-mix(in srgb, var(--dark) 16%, var(--light));
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 5px;
+}
+
+.eyebrow {
+  font-family: var(--codeFont);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--secondary);
+}
+
+a.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem 1.1rem;
+  border: 1px solid var(--portfolio-border);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  white-space: normal;
+  &.primary {
+    background: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--light);
+  }
+  &:hover {
+    border-color: var(--secondary);
+    text-decoration: underline;
+  }
+}
+
+body[data-slug="index"] {
+  .page {
+    max-width: 1120px;
+    padding: 0 2rem;
+    > #quartz-body {
+      display: block;
+      padding: 0;
+      .sidebar.left {
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+        width: 100%;
+        padding: 1.8rem 0 1.2rem;
+        border-bottom: 1px solid var(--portfolio-border);
+        gap: 1rem;
+        .page-title {
+          margin: 0;
+          font-size: 1.15rem;
+        }
+        .flex-component {
+          flex-grow: 0 !important;
+        }
+        .search {
+          min-width: 9rem;
+        }
+      }
+      .sidebar.right,
+      .page-header,
+      .page-footer,
+      .center > hr {
+        display: none;
+      }
+      footer {
+        margin-top: 0;
+        padding: 1.5rem 0 2rem;
+        border-top: 1px solid var(--portfolio-border);
+      }
+    }
+  }
+  article {
+    font-size: 1rem;
+  }
+  a[role="anchor"] {
+    display: none;
+  }
+  .portfolio-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1.3rem 0;
+    font-size: 0.85rem;
+    a {
+      color: var(--darkgray);
+      font-weight: 400;
+    }
+    a:last-child {
+      margin-left: auto;
+    }
+  }
+  a.internal {
+    background: transparent;
+    padding: 0;
+  }
+  a.internal.button {
+    padding: 0.75rem 1.1rem;
+  }
+  a.internal.button.primary {
+    background: var(--secondary);
+  }
+  .portfolio-hero {
+    padding: 3.8rem 0 4rem;
+    h1 {
+      margin: 1rem 0 1.4rem;
+      font-size: clamp(2.6rem, 5.2vw, 4.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      max-width: 1000px;
+      span {
+        display: block;
+        color: var(--secondary);
+      }
+    }
+    .hero-description {
+      max-width: 660px;
+      font-size: 1.15rem;
+      line-height: 1.75;
+    }
+  }
+  .portfolio-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  .text-link {
+    padding: 0.7rem 0;
+    font-size: 0.92rem;
+  }
+  .evidence-strip {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr 1fr;
+    border-top: 1px solid var(--portfolio-border);
+    border-bottom: 1px solid var(--portfolio-border);
+    padding: 1.5rem 0;
+    gap: 2rem;
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    strong {
+      color: var(--dark);
+      font-size: 1.05rem;
+    }
+    span {
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+  }
+  .portfolio-work,
+  .portfolio-experience {
+    padding: 4.5rem 0 0;
+  }
+  .section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    h2 {
+      font-size: 2rem;
+      letter-spacing: -0.035em;
+      margin: 0.5rem 0 0;
+    }
+    > p {
+      max-width: 300px;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+  }
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+  .project-card {
+    border: 1px solid var(--portfolio-border);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    background: color-mix(in srgb, var(--light) 97%, var(--secondary));
+    .project-copy {
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    h3 {
+      margin: 0.6rem 0;
+      font-size: 1.5rem;
+      letter-spacing: -0.025em;
+    }
+    h3 a {
+      color: var(--dark);
+    }
+    p {
+      line-height: 1.65;
+    }
+    .project-meta {
+      font-family: var(--codeFont);
+      font-size: 0.66rem;
+      letter-spacing: 0.04em;
+      color: var(--secondary);
+      margin: 0 0 0.6rem;
+    }
+    .status {
+      display: block;
+      color: var(--darkgray);
+      letter-spacing: 0;
+      margin-top: 0.4rem;
+    }
+    .project-proof {
+      font-size: 0.8rem;
+      margin: 0 0 1.3rem;
+    }
+    .project-links {
+      margin-top: auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+    }
+    &.flagship {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      .project-visual {
+        display: flex;
+        background: #101e29;
+        align-items: center;
+      }
+      img {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        border-radius: 0;
+      }
+    }
+    &.supporting {
+      grid-column: 1 / -1;
+    }
+  }
+  .experience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 0 0 3.5rem;
+    h3 {
+      font-size: 1.1rem;
+    }
+    p {
+      line-height: 1.7;
+    }
+    a {
+      font-size: 0.85rem;
+    }
+  }
+  .notebook-feature {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    border-block: 1px solid var(--portfolio-border);
+    padding: 2.5rem 0;
+    > div {
+      flex: 1;
+    }
+    h2 {
+      margin: 0.5rem 0;
+      font-size: 1.8rem;
+    }
+    p {
+      max-width: 680px;
+      line-height: 1.7;
+    }
+    .muted {
+      font-size: 0.85rem;
+    }
+    .button {
+      flex-shrink: 0;
+    }
+  }
+  .portfolio-contact {
+    padding: 4rem 0;
+    h2 {
+      font-size: 2rem;
+      letter-spacing: -0.035em;
+    }
+    p {
+      max-width: 650px;
+      line-height: 1.7;
+    }
+    .button {
+      margin-top: 0.7rem;
+    }
+  }
+  @media (max-width: 700px) {
+    .page {
+      padding: 0 1.2rem;
+    }
+    .page > #quartz-body .sidebar.left {
+      flex-wrap: wrap;
+      padding-top: 1.2rem;
+      .search {
+        min-width: 0;
+      }
+      .search-button > p {
+        display: none;
+      }
+    }
+    .portfolio-nav {
+      gap: 1rem;
+      font-size: 0.78rem;
+      a:last-child {
+        margin-left: 0;
+      }
+    }
+    .portfolio-hero {
+      padding: 2.2rem 0 2.8rem;
+      h1 {
+        font-size: clamp(2.25rem, 8vw, 3.5rem);
+      }
+    }
+    .evidence-strip {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+    .section-heading {
+      display: block;
+      > p {
+        margin-top: 1rem;
+      }
+    }
+    .portfolio-work,
+    .portfolio-experience {
+      padding-top: 3rem;
+    }
+    .project-grid,
+    .experience-grid {
+      grid-template-columns: 1fr;
+    }
+    .project-card.flagship {
+      grid-template-columns: 1fr;
+    }
+    .project-card .project-copy {
+      padding: 1.3rem;
+    }
+    .experience-grid {
+      gap: 1rem;
+    }
+    .notebook-feature {
+      display: block;
+      .button {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  a {
+    transition: none;
+  }
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320" viewBox="0 0 900 320" role="img" aria-labelledby="title desc">
+<title id="title">Conceptual RISC datapath</title><desc id="desc">Registers, an ALU, memory, and I/O connect through a shared datapath. This is a conceptual overview, not a cycle-level wiring diagram.</desc>
+<rect width="900" height="320" rx="12" fill="#101e29"/>
+<g stroke="#70cbb0" stroke-width="3" fill="none"><path d="M150 160V230H750V160"/><path d="M350 160V230M550 160V230"/></g>
+<g fill="#1e3441" stroke="#779ca7"><rect x="65" y="70" width="170" height="90" rx="8"/><rect x="265" y="70" width="170" height="90" rx="8"/><rect x="465" y="70" width="170" height="90" rx="8"/><rect x="665" y="70" width="170" height="90" rx="8"/></g>
+<g text-anchor="middle" font-family="monospace" font-size="19" fill="#e4eef0"><text x="150" y="121">Registers</text><text x="350" y="121">ALU</text><text x="550" y="121">Memory</text><text x="750" y="121">I/O</text></g>
+<text x="450" y="260" text-anchor="middle" fill="#70cbb0" font-family="monospace" font-size="16">Shared datapath</text><text x="30" y="30" fill="#afc2cb" font-family="monospace" font-size="12">CONCEPTUAL OVERVIEW / SEE RTL FOR CONTROL AND REGISTER TRANSFERS</text>
+</svg>
