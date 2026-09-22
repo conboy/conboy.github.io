@@ -392,3 +392,5 @@ The format is intentionally boring: a fixed header then raw bytes, no compressio
 ## What's next
 
 You now have a working, profiled, quantized model and a set of golden test vectors on your SD card. [[phase-2-numerics]] takes the int8 quantization scheme you just built in C and turns it into real fixed-point arithmetic rules you'll implement in Verilog — the last stop before any RTL touches this model's actual numbers.
+
+<script src="/tutor.js" defer></script>

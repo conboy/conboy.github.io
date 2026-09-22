@@ -379,3 +379,5 @@ perplexity = exp( -mean(log P(correct token)) )
 ## Still confused?
 
 That's expected — a glossary entry is a definition, not a lesson. Each phase note walks through these ideas with numbers specific to `stories260K` and this board. Follow a term's *Used in* link and read it in context; watching a Q-format multiply happen in real Verilog, or a KV cache fill up during generation, tends to make it click.
+
+<script src="/tutor.js" defer></script>

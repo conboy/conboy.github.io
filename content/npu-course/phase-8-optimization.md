@@ -166,3 +166,5 @@ This course targeted the smallest Zynq part on purpose, to force every design de
 - **A second core** — Zynq's PS is dual-core even though this course only ever used one; parallelizing PS-side work (or running two independent generation streams) is a natural next question once the PL side is this well understood.
 
 Keep it public. A working repo, a clear writeup, and a board on your desk that generates real text is a rare and specific thing to be able to show someone.
+
+<script src="/tutor.js" defer></script>

@@ -373,3 +373,5 @@ endmodule
 ## What's next
 
 With the toolchain proven, your Verilog reflexes warmed up, and a working AXI-Lite path between the PS and PL, you have the two things every later phase depends on. Head to [[phase-1-baseline-llm]] to get a baseline language model running purely in software on the ARM core, before any of it moves into the fabric.
+
+<script src="/tutor.js" defer></script>

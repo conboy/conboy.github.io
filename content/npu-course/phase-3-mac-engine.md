@@ -344,3 +344,5 @@ endmodule
 ## What's next
 
 You now have 32 DSPs wired into a systolic array that multiplies matrices roughly 5× faster than the ARM core, validated bit-exactly against your Phase 1 golden model. [[phase-4-memory]] tackles the problem this phase deliberately deferred: an array this fast is only as fast as the data reaching it, and right now it has no pipe to DDR3 at all.
+
+<script src="/tutor.js" defer></script>

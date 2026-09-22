@@ -487,3 +487,5 @@ endmodule
 ## What's next
 
 You now have a sequencer that can take a whole transformer layer's worth of descriptors, execute them unattended across the matmul array and vector unit, and interrupt the PS exactly once when the chain drains. [[phase-7-end-to-end]] is where you wire this sequencer together with everything from Phases 1 through 6 into one complete, working inference pipeline.
+
+<script src="/tutor.js" defer></script>

@@ -112,3 +112,5 @@ That transfers to every accelerator you'll ever touch, including ones far larger
 If you hit a wall on capacity — and 14,400 LUTs is genuinely restrictive — a **Pynq-Z2** (XC7Z020: 53K LUTs, 220 DSPs, 630 KB BRAM) runs about $150 and gives 3–4× the headroom. Everything here ports over unchanged.
 
 But don't start there. Constraint is the best teacher in hardware, and fitting an LLM onto a 7007S is a materially more interesting thing to have done.
+
+<script src="/tutor.js" defer></script>
