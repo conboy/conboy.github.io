@@ -41,8 +41,8 @@ Part of [[index|Zero to NPU]].
 
 ## Calibration
 
-| Source | What it tells you |
-|---|---|
+| Source                                                           | What it tells you                                                                                                                                                                     |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [LlamaF (arXiv 2409.11424)](https://arxiv.org/html/2409.11424v1) | TinyLlama-1.1B at **1.5 tok/s** on a ZCU102 — a board vastly larger than yours. Useful for calibrating what's genuinely hard, and for understanding why your Tier 2 capstone is slow. |
 
 > [!warning] On the Zynq-7020 data point

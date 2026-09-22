@@ -25,9 +25,12 @@ This is why the course ends with **two** capstones rather than one. The first sh
 
 ## Who this is for
 
-You've written some Verilog — a class project, a toy CPU, something — and you want to understand accelerator design by building one rather than reading about one. You do not need prior machine-learning hardware experience.
+You've written some Verilog — a class project, a toy CPU, something — and you want to understand accelerator design by building one rather than reading about one. **You do not need prior machine-learning experience.** Every ML concept is explained from scratch when it first appears, and there's a [[concepts|glossary]] covering every term in the course.
 
 Every module ends in a **measurement**, not a feeling. "It works" means a self-checking testbench passed or a number came out of the UART.
+
+> [!tip] If you get lost
+> Two places to look. [[concepts|Concepts]] defines every term — LUT, systolic array, KV cache, Q-format, doorbell — in plain English with numbers from this specific project. And every phase ends with a **Check your understanding** section plus collapsible troubleshooting for when hardware refuses to cooperate.
 
 ---
 
@@ -58,7 +61,7 @@ Then begin at [[phase-0-toolchain]].
 
 **Total: ~34 weeks at 6–10 hrs/week**, or about eight months. That's an honest estimate for someone rusty on RTL — the first working matmul lands around week 12.
 
-See [[architecture.canvas|the architecture diagram]] for how the blocks connect, and [[reference-material]] for sources.
+See [[architecture.canvas|the architecture diagram]] for how the blocks connect, [[concepts|Concepts]] for definitions, and [[reference-material]] for sources.
 
 ---
 
