@@ -18,7 +18,7 @@ jobs:
   guard:
     # Server-side mirror of .githooks/pre-commit. The local hook can be skipped
     # with --no-verify or lost on a fresh clone; this one cannot.
-    runs-on: ubuntu-latest
+    runs-on: namespace-profile-default
     steps:
       - uses: actions/checkout@v4
       - name: Scan published content for proprietary markers
@@ -37,7 +37,7 @@ jobs:
 
   build:
     needs: guard
-    runs-on: ubuntu-latest
+    runs-on: namespace-profile-default
     steps:
       - uses: actions/checkout@v4
         with:
@@ -59,6 +59,8 @@ jobs:
 
   deploy:
     needs: build
+    # Stays on ubuntu-latest: this job only calls actions/deploy-pages, which
+    # does no compute, so a faster runner buys nothing.
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
