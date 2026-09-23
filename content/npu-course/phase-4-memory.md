@@ -70,7 +70,7 @@ Total tile-load-and-compute steps: 8 (mt) × 16 (nt) × 16 (kt) = **2,048 inner 
 
 ## AXI4, explained for someone who has only used AXI-Lite
 
-In [[Phase 0]] you used [[concepts#AXI|AXI]]-Lite: one address, one data word, done — simple, but strictly one word per transaction, with a full address-and-handshake round trip paid *every single word*. That's fine for configuration registers. It is disastrously slow for moving megabytes of weights, because it pays DDR3's tens-of-cycles latency penalty on every word instead of once per many words.
+In [[phase-0-toolchain|Phase 0]] you used [[concepts#AXI|AXI]]-Lite: one address, one data word, done — simple, but strictly one word per transaction, with a full address-and-handshake round trip paid *every single word*. That's fine for configuration registers. It is disastrously slow for moving megabytes of weights, because it pays DDR3's tens-of-cycles latency penalty on every word instead of once per many words.
 
 AXI4 (the full protocol, not AXI-Lite) fixes this by splitting a transaction into **five independent channels**, each with its own valid/ready handshake:
 

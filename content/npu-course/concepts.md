@@ -89,6 +89,20 @@ Instead of the ARM core polling "is it done," the PL raises an interrupt the ins
 
 *Used in: [[phase-6-sequencer]], [[phase-7-end-to-end]]*
 
+### Verilator
+**An open-source simulator that compiles Verilog into a C++ model you run on your laptop.**
+
+Rather than simulating events the way `xsim` does, Verilator translates synthesizable RTL into a cycle-accurate C++ class you link straight into a testbench — so your C golden model and your hardware can be compared bit for bit, in the same process. It is typically 10–100× faster than the vendor simulator, and that iteration speed is the whole reason this course simulates before it synthesizes.
+
+*Used in: [[phase-0-toolchain]], [[phase-3-mac-engine]]*
+
+### ILA
+**Integrated Logic Analyzer — a debug core Vivado drops into the fabric to capture real signals on the running chip.**
+
+An ILA spends real LUTs and BRAM to record a window of signal values around a trigger condition, then ships the waveform back over JTAG for you to view on the host. It is how you see what the hardware actually did when simulation says one thing and the board does another — the catch being that the capture buffer costs the same BRAM your model wants, so keep the probe list and depth tight on a part this small.
+
+*Used in: [[phase-0-toolchain]]*
+
 ## Buses & memory
 
 ### AXI
