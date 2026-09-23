@@ -47,7 +47,12 @@ body[data-slug="index"] {
     max-width: 1120px;
     padding: 0 2rem;
     > #quartz-body {
+      // Stays a single column on purpose. The graph is lifted out of flow and
+      // pinned beside the hero (see .sidebar.right below) rather than given a
+      // real second column -- a column would narrow *every* section on the
+      // page, because .center holds the entire homepage, not just the hero.
       display: block;
+      position: relative;
       padding: 0;
       .sidebar.left {
         position: static;
@@ -70,11 +75,31 @@ body[data-slug="index"] {
           min-width: 9rem;
         }
       }
-      .sidebar.right,
       .page-header,
       .page-footer,
       .center > hr {
         display: none;
+      }
+      // The graph rides along the top-right of the hero. Absolute so it cannot
+      // affect the width of anything below it.
+      .sidebar.right {
+        position: absolute;
+        top: 10.5rem;
+        right: 0;
+        z-index: 1;
+        display: block;
+        width: 320px;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        gap: 0;
+        .graph {
+          margin: 0;
+        }
+        .graph-outer {
+          height: 400px;
+          margin: 0;
+        }
       }
       footer {
         margin-top: 0;
@@ -120,14 +145,15 @@ body[data-slug="index"] {
       font-size: clamp(2.6rem, 5.2vw, 4.5rem);
       line-height: 1.08;
       letter-spacing: -0.045em;
-      max-width: 1000px;
+      // Narrower than the container so the heading clears the pinned graph.
+      max-width: 680px;
       span {
         display: block;
         color: var(--secondary);
       }
     }
     .hero-description {
-      max-width: 660px;
+      max-width: 620px;
       font-size: 1.15rem;
       line-height: 1.75;
     }
@@ -335,6 +361,10 @@ body[data-slug="index"] {
       padding: 2.2rem 0 2.8rem;
       h1 {
         font-size: clamp(2.25rem, 8vw, 3.5rem);
+        max-width: none;
+      }
+      .hero-description {
+        max-width: none;
       }
     }
     .evidence-strip {
@@ -379,5 +409,29 @@ body[data-slug="index"] {
   }
   a {
     transition: none;
+  }
+}
+
+// Between the desktop hero and the mobile layout there is not enough room to
+// float the graph beside the heading, so it drops back into normal flow under
+// the hero. Below the mobile breakpoint it is hidden entirely.
+@media (max-width: 1000px) {
+  body[data-slug="index"] .page > #quartz-body .sidebar.right {
+    position: static;
+    width: 100%;
+    margin: 0 0 2rem;
+    .graph-outer {
+      height: 300px;
+    }
+  }
+  body[data-slug="index"] .portfolio-hero h1,
+  body[data-slug="index"] .portfolio-hero .hero-description {
+    max-width: none;
+  }
+}
+
+@media (max-width: 700px) {
+  body[data-slug="index"] .page > #quartz-body .sidebar.right {
+    display: none;
   }
 }
