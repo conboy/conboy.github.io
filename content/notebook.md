@@ -11,6 +11,10 @@ This is where I work through ideas in public. Notes can describe a proposed desi
 - [Inside a systolic array](/projects/npu-animation): an interactive matrix-engine visualization and its verification approach.
 - <a href="/npu-anim/" data-router-ignore data-no-popover>Run the systolic array animation ↗</a>
 
+## Local AI infrastructure
+
+- [Two Pools](/local-ai-course/): a fourteen-module roadmap for running a 30B mixture-of-experts coding model on a 16 GB GPU, built around the bandwidth gap between VRAM and system memory.
+
 ## Digital design
 
 - [RISC CPU](/projects/risc-cpu): Verilog datapath and instruction-level simulation artifacts.

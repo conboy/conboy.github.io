@@ -159,6 +159,10 @@ This equation is the one Module 5 spends its entire 12 hours exploiting — the 
 > [!success] Done when
 > You have a single written equation, with your own measured overhead constant substituted in, and one held-out context length where the equation’s prediction was checked against a real measurement.
 
+---
+
+## Check your understanding
+
 > [!question]- 1. Why doesn’t `llama.cpp`’s memory usage match the 4.1 formula exactly?
 > > [!success]- Answer
 > > The 4.1 formula only accounts for the KV cache tensors — the actual K and V values stored per token, per layer, per KV head. A running server also allocates compute buffers for intermediate activations during the forward pass, plus whatever padding or alignment overhead the memory allocator adds. None of that is captured by a formula that only describes the KV tensors themselves, which is exactly why 4.4 measures it instead of computing it.

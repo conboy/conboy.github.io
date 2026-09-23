@@ -71,7 +71,7 @@ Read [[workstation-specs]] first — the Ryzen 9 9950X, the RX 9070 XT, and the 
 > [!warning] Capstone 2 — Your Effective Context (2 weeks)
 > Run a NoLiMa-style needle-in-haystack sweep against *your actual daily config* — your quant, your context length, your KV-cache settings — and find the point where retrieval quality drops below 85% of its short-context baseline. The marketed 256K or 1M context window on the box is not the number that matters. The number where your setup actually degrades is. See [[capstone-2-effective-context]].
 
-**Total: ~14–16 weeks at 6–10 hrs/week.**
+**Total: 101 module hours plus the two capstones — about 16–20 weeks at 8–10 hrs/week.** That is an honest estimate, and most of it is not typing. Several modules are dominated by benchmark runs that take hours of wall-clock time while you do something else; [[module-3-eval-instrument]] exists partly to make sure you are not spending those hours generating numbers you cannot trust.
 
 See [[concepts|Concepts]] for definitions and [[reference-material]] for sources.
 

@@ -44,14 +44,14 @@ The naive prediction only captures effect 1. This module’s job is to quantify 
 > [!abstract] Goal
 > Compute non-expert weight size, expert weight size, and per-layer expert footprint at Q8_0, Q6_K, Q5_K_M, and Q4_K_M.
 
-**What’s going on:** [[module-5-expert-placement|Module 5]] gave you the Q4_K_M split directly: 0.89 GB non-expert weights, 17.41 GB expert weights, 18.30 GB total, at roughly 4.85 effective bits per weight averaged across the whole model (K-quants mix precision by tensor role, so this is a blended figure, not a single quant type applied uniformly). Scaling that blended bits-per-weight figure by the commonly cited approximate bits-per-weight of the other K-quant types gives a predicted table — **predicted, not measured, until you’ve actually downloaded each GGUF and checked its real file size**, which is step 1 below.
+**What’s going on:** [[module-5-expert-placement|Module 5]] gave you the Q4_K_M split directly: 0.89 GB non-expert weights, 17.41 GB expert weights, 18.30 GB total, at roughly 4.8 effective bits per weight averaged across the whole model (K-quants mix precision by tensor role, so this is a blended figure, not a single quant type applied uniformly). Scaling that blended bits-per-weight figure by the commonly cited approximate bits-per-weight of the other K-quant types gives a predicted table — **predicted, not measured, until you’ve actually downloaded each GGUF and checked its real file size**, which is step 1 below.
 
 | Quant | Approx bits/weight | Non-expert GB | Expert GB | Total GB |
 |---|---|---|---|---|
 | Q8_0 | ~8.5 | 1.56 | 30.50 | 32.06 |
 | Q6_K | ~6.56 | 1.20 | 23.56 | 24.76 |
 | Q5_K_M | ~5.5 | 1.01 | 19.75 | 20.76 |
-| Q4_K_M | ~4.85 | 0.89 | 17.41 | 18.30 |
+| Q4_K_M | ~4.8 | 0.89 | 17.41 | 18.30 |
 
 Per-layer expert footprint (`expert_GB / 48 layers`), the figure the budget equation actually consumes:
 

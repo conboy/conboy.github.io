@@ -24,6 +24,8 @@ tags:
 > State the exact, falsifiable claim from the open upstream issue, without treating it as established fact about your card.
 
 **What’s going on:** `llama.cpp` issue #26663, **currently open** at time of writing, reports that on gfx1201 (the RX 9070 XT’s architecture) Vulkan token generation runs **4.7–6.7x slower** than HIP for models with `hidden_size ≥ 4096`, with effective memory bandwidth collapsing to roughly **70–100 GB/s** under Vulkan versus HIP’s reported **~455–464 GB/s** on the same hardware. The suspected cause is a `KHR_coopmat` shader/shape constraint forcing a slow decode code path for wider hidden dimensions. As a contrast point, the same report notes a 4B model with `hidden_size` 2560 was *unaffected* — roughly 183 tok/s and ~424 GB/s effective bandwidth — which is offered as support for the ≥4096 threshold specifically, not a blanket "Vulkan is slow" claim.
+>
+> Every figure in that paragraph is quoted from the issue thread, on someone else’s card, with someone else’s build. Read the issue yourself before you rely on any of it — by the course’s own credibility checklist in [[reference-material]], a number this precise earns trust only from the command line and build ID that produced it.
 
 **This is a hypothesis to test on your own hardware, not a property of your GPU that you should assume going in.** Open issues can be stale, workload-specific, or fixed by the time you read this — treat #26663 exactly the way you’d treat any unverified claim from Module 3 onward: something your own measurement either reproduces or refutes, with the refutation being just as publishable a result as the reproduction.
 
