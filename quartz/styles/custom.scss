@@ -52,6 +52,7 @@ body[data-slug="index"] {
       // real second column -- a column would narrow *every* section on the
       // page, because .center holds the entire homepage, not just the hero.
       display: block;
+      // Containing block for the pinned graph below.
       position: relative;
       padding: 0;
       .sidebar.left {
@@ -80,19 +81,26 @@ body[data-slug="index"] {
       .center > hr {
         display: none;
       }
+
       // The graph rides along the top-right of the hero. Absolute so it cannot
       // affect the width of anything below it.
+      // Pinned into the hero band. .center is the containing block, so this is
+      // measured from the top of the portfolio nav: nav (~3.6rem) + the hero's
+      // 3.8rem top padding + the eyebrow line lands it beside the <h1>.
       .sidebar.right {
         position: absolute;
-        top: 10.5rem;
+        top: 9rem;
         right: 0;
         z-index: 1;
         display: block;
+        box-sizing: border-box;
         width: 320px;
+        max-width: 320px;
         height: auto;
         padding: 0;
         margin: 0;
         gap: 0;
+        flex: none;
         .graph {
           margin: 0;
         }
