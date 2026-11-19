@@ -15,6 +15,10 @@ Working notes. Some describe a design I have not built yet, others an experiment
 
 - [Two Pools](/local-ai-course/): a fourteen-module roadmap for running a 30B mixture-of-experts coding model on a 16 GB GPU, built around the bandwidth gap between VRAM and system memory.
 
+## GPU kernels
+
+- [Kernel Ladder](/rocm-kernels-course/): a twelve-week roadmap for writing ML inference kernels (GEMM, attention, FP8, mixture-of-experts) in HIP, climbing from an RX 5700 XT to an RX 9070 XT to a rented Instinct MI300X, with a GPU MODE leaderboard problem for every module.
+
 ## Digital design
 
 - [RISC CPU](/projects/risc-cpu): Verilog datapath and instruction-level simulation artifacts.
